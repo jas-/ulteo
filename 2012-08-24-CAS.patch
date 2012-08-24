@@ -8974,8 +8974,8 @@
 +}
 
 --- ulteo/sessionmanager/PEAR/CAS.php	1969-12-31 17:00:00.000000000 -0700
-+++ ulteo/sessionmanager/PEAR/CAS.php	2012-08-22 12:48:20.000000000 -0600
-@@ -0,0 +1,1982 @@
++++ ulteo/sessionmanager/PEAR/CAS.php	2012-08-24 12:06:48.574396994 -0600
+@@ -0,0 +1,2000 @@
 +<?php
 +
 +/**
@@ -9239,6 +9239,27 @@
 + * @link     https://wiki.jasig.org/display/CASC/phpCAS
 + */
 +
++require_once 'CAS/Languages/LanguageInterface.php';
++require_once 'CAS/Languages/English.php';
++require_once 'CAS/Languages/Catalan.php';
++require_once 'CAS/Languages/French.php';
++require_once 'CAS/Languages/German.php';
++require_once 'CAS/Languages/Greek.php';
++require_once 'CAS/Languages/Japanese.php';
++require_once 'CAS/Languages/Spanish.php';
++
++require_once 'CAS/AuthenticationException.php';
++require_once 'CAS/GracefullTerminationException.php';
++
++require_once 'CAS/Client.php';
++
++require_once 'CAS/ProxyChain.php';
++require_once 'CAS/ProxyChain/AllowedList.php';
++
++require_once 'CAS/Request/AbstractRequest.php';
++require_once 'CAS/Request/Exception.php';
++require_once 'CAS/Request/CurlRequest.php';
++
 +class phpCAS
 +{
 +
@@ -9319,9 +9340,6 @@
 +        );
 +
 +        // initialize the object $_PHPCAS_CLIENT
-+		include 'CAS/Client.php';
-+		include 'CAS/Languages/LanguageInterface.php';
-+		include 'CAS/Languages/English.php';
 +        self::$_PHPCAS_CLIENT = new CAS_Client(
 +            $server_version, false, $server_hostname, $server_port, $server_uri,
 +            $changeSessionID
