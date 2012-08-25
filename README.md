@@ -7,7 +7,7 @@ In order for this patch to work properly you must first have a working installat
 # Create backup
 I strongly recommend creating a backup of the current Ulteo-OVD CAS module implementation. You can do so from a command line like so.
 
-```%> tar zxvf ~/ulteo-backup.tgz /usr/share/ulteo/sessionmanager/PEAR/CAS```
+```%> tar zxvf ~/ulteo-backup.tgz /usr/share/ulteo```
 
 # Purge
 Next you will need to completely remove the current CAS folder from the session manager like so.
