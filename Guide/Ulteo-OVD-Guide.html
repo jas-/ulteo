@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html class="client-firefox client-firefox-1 client-gecko client-linux" dir="ltr" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Clustered Application Server - Ulteo - LabRats</title>
+<meta name="generator" content="MediaWiki 1.17.0">
+<link rel="alternate" type="application/x-wiki" title="Edit" href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit">
+<link rel="edit" title="Edit" href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit">
+<link rel="shortcut icon" href="http://tyr.scl.utah.edu/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://tyr.scl.utah.edu/opensearch_desc.php" title="LabRats (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://tyr.scl.utah.edu/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="LabRats Atom feed" href="http://tyr.scl.utah.edu/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="Ulteo-OVD-Guide_files/load.css">
+<link rel="stylesheet" href="Ulteo-OVD-Guide_files/main.css" media="screen">
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="">
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Clustered_Application_Server_-_Ulteo skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Clustered Application Server - Ulteo</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From LabRats</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Contents</h2> <span class="toctoggle">[<a href="#" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Ulteo_Remote_Application_Server"><span class="tocnumber">1</span> <span class="toctext">Ulteo Remote Application Server</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Original_Guides"><span class="tocnumber">1.1</span> <span class="toctext">Original Guides</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Current_.282012-08-28.29"><span class="tocnumber">2</span> <span class="toctext">Current (2012-08-28)</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Development_environment"><span class="tocnumber">2.1</span> <span class="toctext">Development environment</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Live_environment"><span class="tocnumber">2.2</span> <span class="toctext">Live environment</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Overview.2C_Setup_.26_Configuration"><span class="tocnumber">3</span> <span class="toctext">Overview, Setup &amp; Configuration</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Session_manager"><span class="tocnumber">3.1</span> <span class="toctext">Session manager</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Network_ports_.26_services_list"><span class="tocnumber">3.1.1</span> <span class="toctext">Network ports &amp; services list</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Configuration_settings"><span class="tocnumber">3.1.2</span> <span class="toctext">Configuration settings</span></a>
+<ul>
+<li class="toclevel-4 tocsection-10"><a href="#System_settings"><span class="tocnumber">3.1.2.1</span> <span class="toctext">System settings</span></a></li>
+<li class="toclevel-4 tocsection-11"><a href="#Server_settings"><span class="tocnumber">3.1.2.2</span> <span class="toctext">Server settings</span></a></li>
+<li class="toclevel-4 tocsection-12"><a href="#Domain_integration_settings"><span class="tocnumber">3.1.2.3</span> <span class="toctext">Domain integration settings</span></a></li>
+<li class="toclevel-4 tocsection-13"><a href="#Authentication_settings"><span class="tocnumber">3.1.2.4</span> <span class="toctext">Authentication settings</span></a></li>
+<li class="toclevel-4 tocsection-14"><a href="#Session_settings"><span class="tocnumber">3.1.2.5</span> <span class="toctext">Session settings</span></a></li>
+<li class="toclevel-4 tocsection-15"><a href="#Events_settings"><span class="tocnumber">3.1.2.6</span> <span class="toctext">Events settings</span></a></li>
+<li class="toclevel-4 tocsection-16"><a href="#Web_interface_settings"><span class="tocnumber">3.1.2.7</span> <span class="toctext">Web interface settings</span></a></li>
+<li class="toclevel-4 tocsection-17"><a href="#Groups"><span class="tocnumber">3.1.2.8</span> <span class="toctext">Groups</span></a></li>
+<li class="toclevel-4 tocsection-18"><a href="#Publications"><span class="tocnumber">3.1.2.9</span> <span class="toctext">Publications</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#Web_client_component"><span class="tocnumber">3.2</span> <span class="toctext">Web client component</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#Current_configuration_changes"><span class="tocnumber">3.2.1</span> <span class="toctext">Current configuration changes</span></a>
+<ul>
+<li class="toclevel-4 tocsection-21"><a href="#Default_to_portal_or_application_mode"><span class="tocnumber">3.2.1.1</span> <span class="toctext">Default to portal or application mode</span></a></li>
+<li class="toclevel-4 tocsection-22"><a href="#Force_the_default_session_manager_URI"><span class="tocnumber">3.2.1.2</span> <span class="toctext">Force the default session manager URI</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-23"><a href="#Application_server.28s.29"><span class="tocnumber">3.3</span> <span class="toctext">Application server(s)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-24"><a href="#Linux"><span class="tocnumber">3.3.1</span> <span class="toctext">Linux</span></a>
+<ul>
+<li class="toclevel-4 tocsection-25"><a href="#Network_ports_.26_services_list_2"><span class="tocnumber">3.3.1.1</span> <span class="toctext">Network ports &amp; services list</span></a>
+<ul>
+<li class="toclevel-5 tocsection-26"><a href="#TCP"><span class="tocnumber">3.3.1.1.1</span> <span class="toctext">TCP</span></a></li>
+<li class="toclevel-5 tocsection-27"><a href="#Service_details"><span class="tocnumber">3.3.1.1.2</span> <span class="toctext">Service details</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-28"><a href="#Windows"><span class="tocnumber">3.3.2</span> <span class="toctext">Windows</span></a>
+<ul>
+<li class="toclevel-4 tocsection-29"><a href="#Network_ports_.26_services_list_3"><span class="tocnumber">3.3.2.1</span> <span class="toctext">Network ports &amp; services list</span></a>
+<ul>
+<li class="toclevel-5 tocsection-30"><a href="#TCP_2"><span class="tocnumber">3.3.2.1.1</span> <span class="toctext">TCP</span></a></li>
+<li class="toclevel-5 tocsection-31"><a href="#UDP"><span class="tocnumber">3.3.2.1.2</span> <span class="toctext">UDP</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-32"><a href="#Patching_.28to_provide_CAS_authentication.29"><span class="tocnumber">4</span> <span class="toctext">Patching (to provide CAS authentication)</span></a>
+<ul>
+<li class="toclevel-2 tocsection-33"><a href="#Latest_patch"><span class="tocnumber">4.1</span> <span class="toctext">Latest patch</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#Make_backup"><span class="tocnumber">4.2</span> <span class="toctext">Make backup</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#Apply_patch"><span class="tocnumber">4.3</span> <span class="toctext">Apply patch</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-36"><a href="#Troubleshooting"><span class="tocnumber">5</span> <span class="toctext">Troubleshooting</span></a>
+<ul>
+<li class="toclevel-2 tocsection-37"><a href="#Session_manager_2"><span class="tocnumber">5.1</span> <span class="toctext">Session manager</span></a>
+<ul>
+<li class="toclevel-3 tocsection-38"><a href="#Server_status"><span class="tocnumber">5.1.1</span> <span class="toctext">Server status</span></a>
+<ul>
+<li class="toclevel-4 tocsection-39"><a href="#Broken_windows_application_server"><span class="tocnumber">5.1.1.1</span> <span class="toctext">Broken windows application server</span></a>
+<ul>
+<li class="toclevel-5 tocsection-40"><a href="#Not_listed_in_session_manager"><span class="tocnumber">5.1.1.1.1</span> <span class="toctext">Not listed in session manager</span></a></li>
+<li class="toclevel-5 tocsection-41"><a href="#Exceptional_condition"><span class="tocnumber">5.1.1.1.2</span> <span class="toctext">Exceptional condition</span></a></li>
+</ul>
+</li>
+<li class="toclevel-4 tocsection-42"><a href="#Broken_linux_application_server"><span class="tocnumber">5.1.1.2</span> <span class="toctext">Broken linux application server</span></a></li>
+<li class="toclevel-4 tocsection-43"><a href="#Broken_Windows_application_server_2"><span class="tocnumber">5.1.1.3</span> <span class="toctext">Broken Windows application server</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-44"><a href="#Additional_recommendations_.28hardening_the_service.29"><span class="tocnumber">6</span> <span class="toctext">Additional recommendations (hardening the service)</span></a>
+<ul>
+<li class="toclevel-2 tocsection-45"><a href="#Session_manager_3"><span class="tocnumber">6.1</span> <span class="toctext">Session manager</span></a>
+<ul>
+<li class="toclevel-3 tocsection-46"><a href="#Web_server"><span class="tocnumber">6.1.1</span> <span class="toctext">Web server</span></a></li>
+<li class="toclevel-3 tocsection-47"><a href="#Database"><span class="tocnumber">6.1.2</span> <span class="toctext">Database</span></a></li>
+<li class="toclevel-3 tocsection-48"><a href="#PHP"><span class="tocnumber">6.1.3</span> <span class="toctext">PHP</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-49"><a href="#Linux_Application_Server"><span class="tocnumber">6.2</span> <span class="toctext">Linux Application Server</span></a>
+<ul>
+<li class="toclevel-3 tocsection-50"><a href="#Samba"><span class="tocnumber">6.2.1</span> <span class="toctext">Samba</span></a></li>
+<li class="toclevel-3 tocsection-51"><a href="#Apache"><span class="tocnumber">6.2.2</span> <span class="toctext">Apache</span></a></li>
+<li class="toclevel-3 tocsection-52"><a href="#cups_Service"><span class="tocnumber">6.2.3</span> <span class="toctext">cups Service</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-53"><a href="#Windows_Application_Server"><span class="tocnumber">6.3</span> <span class="toctext">Windows Application Server</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></tbody></table>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=1" title="Edit section: Ulteo Remote Application Server">edit</a>]</span> <span class="mw-headline" id="Ulteo_Remote_Application_Server"> Ulteo Remote Application Server </span></h1>
+<p>Installation, configuration, patching &amp; troubleshooting guide to 
+the Ulteo-OVD services. Additional details of this software can be found
+ on their website. Here are some useful resources.
+</p>
+<ol>
+ <li><i><b>Ulteo home</b></i> - <a href="http://www.ulteo.com/home/" class="external free" rel="nofollow">http://www.ulteo.com/home/</a></li>
+ <li><i><b>Ulteo OVD source code</b></i> - <a href="http://www.ulteo.com/home/en/download/sourcecode" class="external free" rel="nofollow">http://www.ulteo.com/home/en/download/sourcecode</a></li>
+ <li><i><b>Additional OVD source code access</b></i> - <a href="http://archive.ulteo.com/mirror/ovd/releases/sources/" class="external free" rel="nofollow">http://archive.ulteo.com/mirror/ovd/releases/sources/</a></li>
+ <li><i><b>Community forums</b></i> - <a href="https://groups.google.com/forum/?fromgroups#%21forum/ulteo-ovd-community-support" class="external free" rel="nofollow">https://groups.google.com/forum/?fromgroups#!forum/ulteo-ovd-community-support</a></li>
+</ol>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=2" title="Edit section: Original Guides">edit</a>]</span> <span class="mw-headline" id="Original_Guides"> Original Guides </span></h2>
+<p>All guides can be found @ <a href="http://doc.ulteo.com/latest" class="external free" rel="nofollow">http://doc.ulteo.com/latest</a> and are recommended prior to applying the patch associated with this documentation.
+</p>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=3" title="Edit section: Current (2012-08-28)">edit</a>]</span> <span class="mw-headline" id="Current_.282012-08-28.29"> Current (2012-08-28) </span></h1>
+<p>The current operating environments for the Ulteo-OVD application service details
+</p>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=4" title="Edit section: Development environment">edit</a>]</span> <span class="mw-headline" id="Development_environment"> Development environment </span></h2>
+<p>Currently development efforts for implementation of the Ulteo-OVD application service are as follows:
+</p>
+<ol>
+ <li><i>Session manager</i> - Administrative interface for the development session manager: <a href="https://ulteo-srv.scl.utah.edu/ovd/admin" class="external text" rel="nofollow">Ulteo-OVD Administrative panel</a></li>
+ <li><i>Client area</i> - Client area for using the Ulteo-OVD service: <a href="https://ulteo-srv.scl.utah.edu/ovd/" class="external text" rel="nofollow">Ulteo-OVD Client login</a></li>
+ <li><i>Usage metrics</i> - In order to weigh the usefullness of this 
+service I have setup some simple statistical monitoring software which 
+can be found at the following location: <a href="http://ulteo-srv.scl.utah.edu/awstats/awstats.pl" class="external text" rel="nofollow">Awstats</a></li>
+</ol>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=5" title="Edit section: Live environment">edit</a>]</span> <span class="mw-headline" id="Live_environment"> Live environment </span></h2>
+<p>The current live environment for the Ulteo-OVD service is as follows:
+</p>
+<ol>
+ <li><i>Session manager</i> - Administrative interface for the development session manager: <a href="https://bifrost.scl.utah.edu/ovd/admin" class="external text" rel="nofollow">Ulteo-OVD Administrative panel</a></li>
+ <li><i>Client area</i> - Client area for using the Ulteo-OVD service: <a href="https://bifrost.scl.utah.edu/ovd/" class="external text" rel="nofollow">Ulteo-OVD Client login</a></li>
+ <li><i>Usage metrics</i> - In order to weigh the usefullness of this 
+service I have setup some simple statistical monitoring software which 
+can be found at the following location: <a href="http://bifrost.scl.utah.edu/awstats/awstats.pl" class="external text" rel="nofollow">Awstats</a></li>
+</ol>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=6" title="Edit section: Overview, Setup &amp; Configuration">edit</a>]</span> <span class="mw-headline" id="Overview.2C_Setup_.26_Configuration"> Overview, Setup &amp; Configuration </span></h1>
+<p>This section will provide a general overview of the various 
+components that make up the Ulteo OVD software. The diagram below 
+illustrates how the web client interfaces with the configured 
+application server(s).
+</p><p><a href="http://www.ulteo.com/main/images/uovd/arch2.png" class="external free" rel="nofollow">http://www.ulteo.com/main/images/uovd/arch2.png</a>
+</p>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=7" title="Edit section: Session manager">edit</a>]</span> <span class="mw-headline" id="Session_manager"> Session manager </span></h2>
+<p>The Session Manager component handles the Administrative panel which is used to configure the Ulteo software.
+</p><p>It uses the following locations...
+</p>
+<ol>
+ <li><i><b>/etc/ulteo/sessionmanager</b></i> - Here you can find the 
+Apache virtual host configuration directives, the default administrative
+ login for the Ulteo admin interface etc.</li>
+ <li><i><b>/usr/share/ulteo/sessionmanager</b></i> - The web interface 
+for the session manager. This folder contains the administrative 
+interface as well as components the webclient uses for authentication 
+&amp; session management.</li>
+ <li><i><b>/var/log/ulteo/sessionmanager</b></i> - The logs here are used within the administrative interface and can serve as a good source of troubleshooting</li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=8" title="Edit section: Network ports &amp; services list">edit</a>]</span> <span class="mw-headline" id="Network_ports_.26_services_list"> Network ports &amp; services list </span></h3>
+<p>Being a complex application there are several TCP/UDP port 
+requirements for remote application usage. The session manager port 
+requirements are as follows:
+</p>
+<ol>
+ <li><i>Apache</i> - TCP ports 80 &amp; 443 (I would recommend disabling port 80 and requiring access through 443)</li>
+ <li><i>MySQL</i> - TCP port 3306 (disabling of outside access is fine due to session manager &amp; web client using localhost for access)</li>
+ <li><i>LMSocialServer</i> - TCP port 1111 (This port is used for 
+application server status updates and can be limited via local port 
+filters to application servers only)</li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=9" title="Edit section: Configuration settings">edit</a>]</span> <span class="mw-headline" id="Configuration_settings"> Configuration settings </span></h3>
+<p>The current configuration settings within the Ulteo session manager are as follows:
+</p>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=10" title="Edit section: System settings">edit</a>]</span> <span class="mw-headline" id="System_settings"> System settings </span></h4>
+<ol>
+ <li><i>System on maintenence mode</i> - no</li>
+ <li><i>Administration console language</i> - autodetect</li>
+ <li><i>Debug option list</i> - info, warning, error &amp; critical</li>
+ <li><i>Cache logs update every</i> - 30 seconds</li>
+ <li><i>Cache logs expiry time</i> - a day</li>
+ <li><i>Default user group</i> -&nbsp;???</li>
+ <li><i>Domain integration</i> - internal</li>
+ <li><i>Maximum items per page</i> - 100</li>
+ <li><i>Maximum number of running sessions</i> - 0</li>
+ <li><i>Modules activation</i> - ApplicationDB, ApplicationsGroupDB, 
+AuthMethod, ProfileDB, SessionManagement, SharedFolderDB, UserDB, 
+UserGroupDB, UserGroupDBDynamic</li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=11" title="Edit section: Server settings">edit</a>]</span> <span class="mw-headline" id="Server_settings"> Server settings </span></h4>
+<ol>
+ <li><i>Disable reverse FQDN checking</i> - yes</li>
+ <li><i>Action when a server status is not ready anymore</i> - switch to maintenence</li>
+ <li><i>Auto-recover server</i> - yes</li>
+ <li><i>Remove orphan applications when the application server is deleted</i> - yes</li>
+ <li><i>Auto register new servers</i> - yes</li>
+ <li><i>Auto switch new servers to production mode</i> - yes</li>
+ <li><i>When an Application Server have reached its "max sessions" limit, disable session launch on it&nbsp;?</i> - yes</li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=12" title="Edit section: Domain integration settings">edit</a>]</span> <span class="mw-headline" id="Domain_integration_settings"> Domain integration settings </span></h4>
+<ol>
+ <li><i>Internal database profiles</i> - internal</li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=13" title="Edit section: Authentication settings">edit</a>]</span> <span class="mw-headline" id="Authentication_settings"> Authentication settings </span></h4>
+<ol>
+ <li><i>AuthMethod</i> - CAS</li>
+ <li><i>CAS Server URL</i> - <a href="https://go.utah.edu/cas" class="external free" rel="nofollow">https://go.utah.edu:443/cas</a></li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=14" title="Edit section: Session settings">edit</a>]</span> <span class="mw-headline" id="Session_settings"> Session settings </span></h4>
+<ol>
+ <li><i>Default mode for session</i> - applications</li>
+ <li><i>Default language for session</i> - english</li>
+ <li><i>Default timeout for session</i> - 1 day</li>
+ <li><i>User can launch a session even if some of his published applications are not available</i> - yes</li>
+ <li><i>User can use a console in the session</i> - no</li>
+ <li><i>Multimedia</i> - yes</li>
+ <li><i>Redirect client drives</i> - full</li>
+ <li><i>Redirect client printers</i> - yes</li>
+ <li><i>RDP bpp</i> - 16</li>
+ <li><i>Enhance user experience</i> - yes</li>
+ <li><i>Enable user profiles</i> - yes</li>
+ <li><i>Auto-create user profiles when non-existant</i> - yes</li>
+ <li><i>Launch a session without a valid profile</i> - yes</li>
+ <li><i>Enable shared folders</i> - yes</li>
+ <li><i>Launch a session even when a shared folder's fileserver is missing</i> - yes</li>
+ <li><i>Forceable paramaters by users</i> - none</li>
+ <li><i>Enable Remote Desktop</i> - yes</li>
+ <li><i>Sessions are persistent</i> - yes</li>
+ <li><i>Show icons on user desktop</i> - yes</li>
+ <li><i>Allow external applications in Desktop</i> - yes</li>
+ <li><i>Desktop type</i> - any</li>
+ <li><i>Servers which are allowed to start desktop</i> - empty</li>
+ <li><i>Enable Remote Applications</i> - yes</li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=15" title="Edit section: Events settings">edit</a>]</span> <span class="mw-headline" id="Events_settings"> Events settings </span></h4>
+<ol>
+ <li><i>Email address to send alerts to</i> - User definable</li>
+ <li><i>Server status changed</i> - checked</li>
+ <li><i>Session startup</i> - checked</li>
+ <li><i>SQL failure</i> - checked</li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=16" title="Edit section: Web interface settings">edit</a>]</span> <span class="mw-headline" id="Web_interface_settings"> Web interface settings </span></h4>
+<ol>
+ <li><i>Display users list</i> - no</li>
+ <li><i>Public Webservices access</i> - yes</li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=17" title="Edit section: Groups">edit</a>]</span> <span class="mw-headline" id="Groups"> Groups </span></h4>
+<p>Because we are using the CAS (common authentication service) a 
+dynamic group must be configured to handle users coming from this 
+service.
+</p><p>In order for this dynamic group configuration you must first 
+enable the 'DynamicGroupDB' module. You can do this by this series of 
+clicks...
+</p>
+<ol>
+ <li><i>Login to the administration area</i></li>
+ <li><i>Select Configuration</i></li>
+ <li><i>System Settings</i></li>
+ <li><i>Modules Activation</i>
+  <ol><li><i>Check 'DynamicGroupDB' option</i></li></ol></li>
+ <li><i>Save</i></li>
+</ol>
+<p>Now that the required module is enabled follow this series of clicks to create a dynamic group...
+</p>
+<ol>
+ <li><i>Users</i></li>
+ <li><i>Users Groups</i>
+  <ol>
+   <li><i>Create new group</i></li>
+   <li><i>Dynamic</i></li>
+   <li><i>Enter a unique name</i></li>
+   <li><i>Add a unique description</i></li>
+   <li><i>Cached</i> = no</li>
+   <li><i>Validation type</i> = "at least one"</li>
+   <li><i>Login stats with</i> = "u"</li>
+  </ol>
+ </li><li><i>Save</i></li>
+</ol>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=18" title="Edit section: Publications">edit</a>]</span> <span class="mw-headline" id="Publications"> Publications </span></h4>
+<p>In order for any of our CAS authenticated users (members of our new 
+dynamic group) to use any of the applications the Ulteo software 
+provides you must first create a list of published applications. The 
+following series of clicks will do this.
+</p>
+<ol>
+ <li><i>Publication Wizard</i></li>
+ <li><i>Use usergroups</i></li>
+ <li><i>Select dynamic group you just created</i></li>
+ <li><i>Next</i></li>
+ <li><i>Create group with applications</i></li>
+ <li><i>Select any/all applications you wish to provide to this dynamic group</i></li>
+ <li><i>Next</i></li>
+ <li><i>Enter unique name</i></li>
+ <li><i>Enter unique description</i></li>
+ <li><i>Next</i></li>
+ <li><i>Confirm</i></li>
+</ol>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=19" title="Edit section: Web client component">edit</a>]</span> <span class="mw-headline" id="Web_client_component"> Web client component </span></h2>
+<p>The web client component is the access point that clients wishing to 
+launch virtualized/remote applications will use. This component relies 
+upon java applets once authentication has occured to load the requested 
+piece of software. It can be found in /usr/share/ulteo/webclient.
+</p><p>It uses the following locations...
+</p>
+<ol>
+ <li><b><i>/etc/ulteo/webclient</i></b> - The primary configuration for the webclient can be found here.</li>
+ <li><b><i>/usr/share/ulteo/webclient</i></b> - The webclient application including the Java applets, ajaxplorer etc can be found in this location.</li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=20" title="Edit section: Current configuration changes">edit</a>]</span> <span class="mw-headline" id="Current_configuration_changes"> Current configuration changes </span></h3>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=21" title="Edit section: Default to portal or application mode">edit</a>]</span> <span class="mw-headline" id="Default_to_portal_or_application_mode"> Default to portal or application mode </span></h4>
+<p>Force portal mode for clients
+edit /etc/ulteo/webclient/config.inc.php
+</p><p>Uncomment:
+</p>
+<pre>define('OPTION_FORCE_SESSION_MODE', 'applications');</pre>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=22" title="Edit section: Force the default session manager URI">edit</a>]</span> <span class="mw-headline" id="Force_the_default_session_manager_URI"> Force the default session manager URI </span></h4>
+<p>You may wish to force the default session manager URL
+edit /etc/ulteo/webclient/config.inc.php
+</p><p>Uncomment &amp; edit:
+</p>
+<pre>define('SESSIONMANAGER_HOST', '[FQDN of session manager]');</pre>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=23" title="Edit section: Application server(s)">edit</a>]</span> <span class="mw-headline" id="Application_server.28s.29"> Application server(s) </span></h2>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=24" title="Edit section: Linux">edit</a>]</span> <span class="mw-headline" id="Linux"> Linux </span></h3>
+<p>The linux application server is used to provide the file system 
+interface and mapping to local shares for the remote authenticated user.
+ Below are details of the installed environement.
+</p>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=25" title="Edit section: Network ports &amp; services list">edit</a>]</span> <span class="mw-headline" id="Network_ports_.26_services_list_2"> Network ports &amp; services list  </span></h4>
+<p>The linux application server &amp; filesystem uses several processes 
+to make up the whole. Included in the ulteo-ovd-subsystem processes are 
+the following:
+</p>
+<h5><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=26" title="Edit section: TCP">edit</a>]</span> <span class="mw-headline" id="TCP"> TCP </span></h5>
+<ol>
+ <li><i>Apache</i> - The apache webserver using TCP port 1113 (This port only needs to be accessible to &amp; from the session manager)</li>
+ <li><i>Python</i> - A customized python client socket is open on TCP 
+port 1112 (This port also only needs to be accessible to &amp; from the 
+session manager)</li>
+ <li><i>NetBIOS</i> - The netbios service initialized from the Samba 
+service using TCP port 139 (This port is required for the file service 
+for remote authenticated users)</li>
+ <li><i>Xvnc</i> - The Xvnc service listening on TCP port 5910 (This also needs to be accessable for remote authenticated users)</li>
+ <li><i>Xrdp</i> - The Xrdp service listening on TCP 3350 (This is only 
+bound to the local loop back adapter or localhost address and does NOT 
+need to be publicly accessible for remote authenticated users)</li>
+ <li><i>Cups</i> - The cupsd service listening on TCP port 631 (This 
+also is only bound to the local loop back adapter or localhost and does 
+NOT need to be publicly accessible for remote authenticated users)</li>
+ <li><i>Samba</i> - The SMB service is bound to TCP port 445 (This port only needs to be accessible from the configured application servers)</li>
+ <li><i>RDP</i> - The RDP (Remote Desktop Protocol) is bound to TCP port 3389 (This needs to be accessible from remote authenticated users)</li>
+</ol>
+<h5><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=27" title="Edit section: Service details">edit</a>]</span> <span class="mw-headline" id="Service_details"> Service details </span></h5>
+<p>Here are the details of the various files installed with the 
+Ulteo-OVD subsystem (filesystem &amp; application server) on a linux 
+host.
+</p>
+<ol>
+ <li><i>/etc/ulteo</i> - The configuration file location for the Ulteo-OVD subsystem</li>
+ <li><i>/var/log/ulteo</i> - The log files for the Ulteo-OVD subsystem application server</li>
+ <li><i>/opt/ulteo</i> - The chroot environment used for the file system services as well as the application services</li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=28" title="Edit section: Windows">edit</a>]</span> <span class="mw-headline" id="Windows"> Windows </span></h3>
+<p>The windows application server is used by remote authenticated users to launch applications.
+</p>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=29" title="Edit section: Network ports &amp; services list">edit</a>]</span> <span class="mw-headline" id="Network_ports_.26_services_list_3"> Network ports &amp; services list </span></h4>
+<p>Being a complex application there are several TCP/UDP port 
+requirements for remote application usage. The applicaiton port 
+requirements are as follows: 
+</p>
+<h5><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=30" title="Edit section: TCP">edit</a>]</span> <span class="mw-headline" id="TCP_2"> TCP </span></h5>
+<ol>
+ <li><i>epmap</i> - TCP port 135 (This should only need to be accessible from the configured application servers)</li>
+ <li><i>microsoft-ds</i> - TCP port 445 (This should also only need to be accessible from the configured application servers)</li>
+ <li><i>Python</i> - TCP port 1112 (Also only needs to be accessible from the configured application servers)</li>
+ <li><i>RDP</i> - TCP port 3389 (This needs to be accessible from any authenticated user)</li>
+</ol>
+<h5><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=31" title="Edit section: UDP">edit</a>]</span> <span class="mw-headline" id="UDP"> UDP </span></h5>
+<ol>
+ <li><i>microsoft-ds</i> - UDP port 445 (Accessible from configured application servers)</li>
+ <li><i>isakmp</i> - UDP port 500 (Also only accessible from the configured application servers</li>
+ <li><i>ipsec-msft</i> - UDP port 4500 (Also only accessible from the configured application servers</li>
+ <li><i>netbios-ns</i> - UDP port 137 (Accessible from configured application servers</li>
+ <li><i>netbios-dgm</i> - UDP port 138 (Also accessible from configured application servers</li>
+</ol>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=32" title="Edit section: Patching (to provide CAS authentication)">edit</a>]</span> <span class="mw-headline" id="Patching_.28to_provide_CAS_authentication.29"> Patching (to provide CAS authentication) </span></h1>
+<p>As of this writing (2012-08) CAS authentication for the Ulteo-OVD 
+software is broken. The phpCAS::Client performs a redirect to the CAS 
+authentication service when no ST or PG ticket exists on the client. 
+However due to the authentication form posting credentials to the 
+sessionmanager which then generates an XML formatted query prior to 
+performing this redirection header information does not work properly.
+</p><p>The steps following will upgrade the current phpCAS module and 
+implement the proper redirection based on the Ulteo-OVD CAS enabled 
+options within the Ulteo-OVD admin interface.
+</p>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=33" title="Edit section: Latest patch">edit</a>]</span> <span class="mw-headline" id="Latest_patch"> Latest patch </span></h2>
+<p>Here is the latest <a href="https://raw.github.com/jas-/ulteo/master/ulteo-latest-CAS.patch" class="external text" rel="nofollow">patch</a>
+ which will update the phpCAS client included with the latest version of
+ the Ulteo Session Manager. Please note that you must have the 
+'DynamicGroupDB' module enabled and also have defined a group using the 
+DynamicGroupDB module as listed above for the Session Manager 
+configuration section.
+</p>
+<pre>%&gt; wget https://raw.github.com/jas-/ulteo/master/ulteo-latest-CAS.patch</pre>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=34" title="Edit section: Make backup">edit</a>]</span> <span class="mw-headline" id="Make_backup"> Make backup </span></h2>
+<p>You should first make a backup of the /usr/share/ulteo folder. This 
+folder contains the session manager and the web client (if installed on 
+the same web server).
+</p>
+<pre>%&gt; cd /usr/share &amp;&amp; tar zcvf ~/ulteo-backup.tgz ulteo/</pre>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=35" title="Edit section: Apply patch">edit</a>]</span> <span class="mw-headline" id="Apply_patch"> Apply patch </span></h2>
+<p>In order to apply the patch to the latest Ulteo installation (v3.x) 
+you must first remove the outdated phpCAS installation. This is why the 
+backup in the previous step is crucial should something go wrong. To do 
+this issue the following command.
+</p>
+<pre>%&gt; rm -frv /usr/share/ulteo/sessionmanager/PEAR/CAS*</pre>
+<p>Next simply apply the patch using the following command.
+</p>
+<pre>%&gt; cd /usr/share &amp;&amp; patch -p0 &lt; ~/2012-08-24.patch</pre>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=36" title="Edit section: Troubleshooting">edit</a>]</span> <span class="mw-headline" id="Troubleshooting"> Troubleshooting </span></h1>
+<p>Here are some general troubleshooting guidelines to the various components that make up the Ulteo-OVD service.
+</p>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=37" title="Edit section: Session manager">edit</a>]</span> <span class="mw-headline" id="Session_manager_2"> Session manager </span></h2>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=38" title="Edit section: Server status">edit</a>]</span> <span class="mw-headline" id="Server_status"> Server status </span></h3>
+<p>Occasionally an application server status will be in a 'broken' 
+state. Generally this refers to the application server process is no 
+longer sending status updates to the session manager.
+</p><p>When this type of proplem occurs a restart of the Ulteo-OVD application service must be restarted.
+</p>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=39" title="Edit section: Broken windows application server">edit</a>]</span> <span class="mw-headline" id="Broken_windows_application_server"> Broken windows application server </span></h4>
+<p>Here are some common problems encountered when using the Ulteo-OVD 
+application server (v3.0.2) in a Windows 2003 server environement.
+</p>
+<h5><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=40" title="Edit section: Not listed in session manager">edit</a>]</span> <span class="mw-headline" id="Not_listed_in_session_manager"> Not listed in session manager </span></h5>
+<p>If the Windows application server is not registering within the 
+Ulteo-OVD session manager there are a couple of DNS errors that could be
+ the cause of the problem.
+</p>
+<ol>
+ <li><i>FQDN of session manager</i> - During the installation process 
+you were prompted to enter a session manager hostname, if an IP address 
+was entered you may experience problems with the application server not 
+registering with the session manager</li>
+ <li><i>DNS A record</i> - If the DNS A record of the session manager OR
+ the application server is incorrect you may experience problems with 
+the application server registering with the session manager</li>
+</ol>
+<p>In order to resolve these problems the following solutions may be applied.
+</p>
+<ol>
+ <li><i>Use FQDN</i> - Use of a FQDN (Fully Qualified Domain Name) during the installation is highly recommended.</li>
+ <li><i>Static host entry</i> - Although not recommended a static route 
+can be added to the "C:\Windows\System32\drivers\etc\hosts" file and 
+would look like this example.<pre>127.0.0.1    localhost
+10.0.0.2    hostname.of.session.manager    hostname</pre></li>
+ <li><i>DNS A record</i> - The addition or modification of the DNS A record corresponding to your session manager hostname</li>
+</ol>
+<h5><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=41" title="Edit section: Exceptional condition">edit</a>]</span> <span class="mw-headline" id="Exceptional_condition"> Exceptional condition </span></h5>
+<p>Windows 2003 server error logs when handling exceptional conditions 
+may return errors similar to the following in the event viewer. The 
+error listed below is due to a problem with the XML formatted response 
+from the session manager when recieving a status request. This error 
+could be an indication of a man in the middle attack scenario because 
+the application server is expecting an XML formatted query from the 
+session manager.
+</p>
+<pre>The instance's SvcRun() method failed 
+Traceback (most recent call last):
+  File "win32serviceutil.pyc", line 806, in SvcRun
+  File "OVDWin32Service.pyc", line 95, in SvcDoRun
+  File "ovd\SlaveServer.pyc", line 167, in loop_procedure
+  File "ovd\SMRequestManager.pyc", line 169, in send_server_monitoring
+  File "ovd\SMRequestManager.pyc", line 69, in get_response_xml
+IOError: (9, 'Bad file descriptor') 
+%2:&nbsp;%3</pre>
+<p>The above error is caused by the following query from the session manager.
+</p>
+<pre>[608] content type: text/html</pre>
+<p>And usually results in errors similar to the following:
+</p>
+<pre>Windows saved user ULTEO-WIN2K3\OVDAdmin registry while an application or service was still using the registry during log off. The memory used
+by the user's registry has not been freed. The registry will be unloaded when it is no longer in use. 
+
+ This is often caused by services running as a user account, try configuring the services to run in either the LocalService or NetworkService account.</pre>
+<p>Although this scenario is rare, mitigation of this problem in the 
+future is to modify the Ulteo-OVD application server to use a 
+LocalServer or NetworkService account as stated in the error. This is 
+possible by using the 'services' administrative panel to modify the 
+running user account. However, due to problems with the system account 
+used to run the service errors in creating profiles and mapping SID to 
+the user accounts will fail due to privilege errors because the 
+specified account must be able to create users &amp; their associated 
+profiles.
+</p><p><i>As of this writing (2012-08-27) the ulteo service must be run 
+as the 'OVDAdmin' user account (default user created during installation
+ of the OVD Application server).</i>
+</p><p>To resolve this communication error between the Ulteo Application
+ server and session manager the service must be stopped and restarted. 
+You can use taskmanager or the administrative services managmement 
+console to do this.
+</p>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=42" title="Edit section: Broken linux application server">edit</a>]</span> <span class="mw-headline" id="Broken_linux_application_server"> Broken linux application server </span></h4>
+<p>A linux application server serves dual roles. It first provides linux
+ applications and it also provides file system drive &amp; printer 
+mapping to authenticated clients.
+</p>
+<ol>
+ <li><i>Offline</i> - If the application &amp; file server is not 
+available using the Ulteo-OVD administrative interface the 
+ulteo-ovd-subsystem must be restarted.</li>
+ <li><i>No file browser</i> - If an authenticated user connects to the 
+service and does not see a file browser it is due to the Ulteo-OVD SMBD 
+service being down or that no Linux application &amp; file server has 
+been registered.</li>
+ <li><i>Cannot save to desktop</i> - If an authenticated user cannot 
+save to their desktop it is because their current OS username does not 
+match the authenticated username provided to the Ulteo-OVD service or 
+the necessary samba file service to WebDAV folder mapping did not take 
+place</li>
+</ol>
+<p>In most situations these problems can be resovled by simply restarting the Ulteo-OVD-subsystem (from a command line)
+</p>
+<pre>%&gt; sudo -c '/etc/init.d/ulteo-ovd-subsystem restart'</pre>
+<h4><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=43" title="Edit section: Broken Windows application server">edit</a>]</span> <span class="mw-headline" id="Broken_Windows_application_server_2"> Broken Windows application server </span></h4>
+<p>A windows application server provides remote application to authenticated clients using terminal services connections.
+</p>
+<ol>
+ <li><i>Offline</i> - If the windows application service is shown as 
+broken or offline using the Ulteo-OVD sessionmanager administrative 
+interface, or clients are not able to access windows applications, the 
+Ulteo-OVD-slaveservice may need to be restarted. Use the <i>Administrative Tools -&gt; Services</i> MMC snap-in to stop and restart the service. If the service cannot be restarted use the <i>Task Manager</i> to stop any OVD services and restart.</li>
+</ol>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=44" title="Edit section: Additional recommendations (hardening the service)">edit</a>]</span> <span class="mw-headline" id="Additional_recommendations_.28hardening_the_service.29"> Additional recommendations (hardening the service) </span></h1>
+<p>Because of the many components this is broken into sections each 
+component such as the session manager or application server is broken 
+down into the core services each provide.
+</p>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=45" title="Edit section: Session manager">edit</a>]</span> <span class="mw-headline" id="Session_manager_3"> Session manager </span></h2>
+<p>Here are some additional configuration options you may apply to the default session manager installation.
+</p>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=46" title="Edit section: Web server">edit</a>]</span> <span class="mw-headline" id="Web_server"> Web server </span></h3>
+<ol>
+ <li><i><b>Use of ACL's</b> (Session manager administrative control panel)</i> - The use of an allowed/deny list should be used within the <i>/etc/ulteo/sessionmanager/apache2-admin.conf</i> to limit administrative access. An example follows:
+<pre>Alias /ovd/admin /usr/share/ulteo/sessionmanager/admin
+&lt;Directory /usr/share/ulteo/sessionmanager/admin&gt;
+    Options FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    allow from 192.168.1.0/24
+    allow from 10.0.1.0/24
+    deny from all
+    DirectoryIndex index.php
+    php_admin_flag magic_quotes_gpc Off
+&lt;/Directory&gt;</pre></li>
+ <li><i><b>Use of ACL's</b> (Session manager application server monitoring component)</i>
+ - Additionally the use of ACL's for the webservices component to limit 
+connections from anywhere other than valid application servers can be 
+used. To do this you must modify the <i>/etc/ulteo/sessionmanager/apache2-vhost-server.conf</i>. Here is an example:<pre>NameVirtualHost *:1111
+Listen 1111
+&lt;VirtualHost *:1111&gt;
+        RewriteEngine on
+
+        RewriteCond&nbsp;%{REQUEST_URI} ^/(.+)/(.+)$
+        RewriteRule . /%1_%2.php [L]
+
+        DocumentRoot /usr/share/ulteo/sessionmanager/webservices
+        &lt;Directory /usr/share/ulteo/sessionmanager/webservices&gt;
+                Order deny,allow
+                deny from all
+                allow from 192.168.1.10 #Linux application/file server
+                allow from 192.168.1.11 #Windows application server
+                allow from 192.168.2.0/24 #Or if you use an entire subnet for your application servers
+        &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</pre>Keep in mind this modification should take 
+place anytime a new linux or windows application server is added to the 
+Ulteo-OVD service. </li>
+ <li><i><b>SSL certificate</b></i> - The default installation uses a 
+self-signed certificate which should be replaced with a valid signed 
+certificate based on the hostname used for the Ulteo DNS A record. Once a
+ certificate has been signed modify the <i>/etc/ulteo/sessionmanager/apache2-vhost-ssl.conf</i> to reflect this change. An example follows:
+<pre>SSLEngine on
+SSLCertificateFile /path/to/valid/signed/certificate.cer
+SSLCertificateKeyFile /path/to/valid/private/key/used/for/certificate/generation.key</pre>
+And here is how to create the certificate request from a certificate authority:<pre>%&gt; openssl genrsa -des3 -out server.key 1024
+%&gt; openssl req -new -key server.key -out server.csr
+</pre>Then send the server.csr to the certificate authority for signing.</li>
+ <li><i><b>Force SSL</b></i> - By default Apache will bind to port 80, 
+because authentication is involved it is wise to force redirects to the 
+SSL/TLS protocol on port 443. To do this we will add a simple redirect 
+to the '/etc/apache2/sites-available/default' virtual host declaration 
+like so:<pre>RewriteEngine on
+ReWriteCond&nbsp;%{SERVER_PORT}&nbsp;!^443$
+RewriteRule ^/(.*) https://%{HTTP_HOST}/$1 [NC,R,L]</pre></li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=47" title="Edit section: Database">edit</a>]</span> <span class="mw-headline" id="Database"> Database </span></h3>
+<ol>
+ <li><i><b>MySQL user</b></i> - The default installation does not create and associate a user which can be used to access the MySQL database. This is <b><i>strongly</i></b> recommended and can be done with the examples show below:
+<pre>%&gt; mysql -u root -p -e 'CREATE USER "[dbUser]"@"localhost" IDENTIFIED BY "[dbPassword]"'
+%&gt; mysql -u root -p -e 'GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, INDEX, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, ALTER ON `OVD`.* TO "[dbUser]"@"localhost"'
+%&gt; mysql -u root -p -e 'FLUSH PRIVILEGES'</pre>
+Once you have created the user account, assigned a password, issued 
+permissions &amp; flushed the privilege table log into the session 
+manager using the default administrative account, browse to <i>configuration -&gt; database settings</i>
+ and update the fields to reflect your new account. In order to prevent 
+errors during initial configuration you should use the root MySQL user 
+account and configuration the administrative section of the Ulteo-OVD 
+session manager.</li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=48" title="Edit section: PHP">edit</a>]</span> <span class="mw-headline" id="PHP"> PHP </span></h3>
+<p>The PHP interpeter can also be hardened with the assistance of the 
+suhosin patch. To install simple run the following as a root user:
+</p>
+<pre>%&gt; apt-get install php5-suhosin</pre>
+<p>Once it is installed it is wise to configure it. Below are some 
+options to harden this feature providing the maximum protection for the 
+PHP interpreter.
+</p>
+<ol>
+ <li><i>Executor options</i> - The suhosin patch can be used to prevent 
+things such as directory traversals, stack execution depths and 
+white/black listing of specific PHP functions. Below are the 'minimum' 
+options to be configured for this section.<pre>suhosin.executor.max_depth = 50
+suhosin.executor.include.max_traversal = 5
+suhosin.executor.disable_eval = on</pre>
+I also highly recommend disabling the /e modifier available within the 
+PCRE (perl compatible regular expression library) as they contain remote
+ execute of scripts. <i>However</i>, this option requires modification 
+of the PHP source code within the Ulteo-OVD software to remove all 
+instances of the /e modifier used in the preg_match() function.<pre>suhosin.executor.disable_emodifier = on</pre></li>
+
+ <li><i>Misc options</i> - Apache may cause segfaults due to the APC 
+functionality reserving resources which the suhosin patch may request. 
+If your apache installation is causing segfaults you may wish to enable 
+the APC workaround like so:<pre>suhosin.apc_bug_workaround = on</pre></li>
+ <li><i>Transparent encryption options</i> - Additionally transparent 
+encryption of PHP server side session's &amp; the client side cookie is 
+recommended. Below are examples:<pre>suhosin.session.encrypt = on
+suhosin.cookie.encrypt = on</pre></li>
+</ol>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=49" title="Edit section: Linux Application Server">edit</a>]</span> <span class="mw-headline" id="Linux_Application_Server"> Linux Application Server </span></h2>
+<p>The linux application server provides several services which you may additionally configure using the recommendations below.
+</p>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=50" title="Edit section: Samba">edit</a>]</span> <span class="mw-headline" id="Samba"> Samba </span></h3>
+<p>Additional configuration settings for the Samba file server service 
+(within the chroot environment) may be used. Below are some guides:
+</p>
+<ol>
+  <li><i>File types</i> - Disabling specific file types using the 'veto 
+files' configuration directive in the '/opt/ulteo/etc/samba/smb.conf' 
+can be used like so (this example disables most common script types 
+&amp; executables):<pre>veto files /$RECYCLE.BIN/*.cpp/*.exe/*.sh/*.php/*.pl/*.bat/
+</pre></li>
+  <li><i>System accounts</i> - Additionally preventing system account access can also be utilized like so:<pre>invalid users = daemon, bin, sys, sync, games, man, lp, mail</pre></li>
+  <li><i>Security mode</i> - Currently the samba fileserver mode is set 
+to 'share' which only requires a password be provided when mapping a 
+share. According to documentation regarding security hardning of a Samba
+ fileserver this is strongly discouraged. A stricter security mode 
+should be set such as 'user' as in this example:<pre>security = user</pre>This
+ configuration does result the client no longer being able to save files
+ directly to their own machine. A feature request will be sent to the 
+current Ulteo-OVD maintainers regarding this.</li>
+  <li><i>Interface security</i> - Force bind mode to only allowed interfaces as well as force socket connection mode. Example:<pre>interfaces = eth0, lo
+bind interfaces only = yes
+socket options = TCP_NODELAY</pre></li>
+ </ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=51" title="Edit section: Apache">edit</a>]</span> <span class="mw-headline" id="Apache"> Apache </span></h3>
+<p>Additional configuration settings may also be applied to the Apache 
+web server service (also located within the chroot environment). Below 
+are some recommendations:
+</p>
+<ol>
+ <li><i>Hosts</i> - The apache webserver can be hardened by restricting 
+access through the use of the 'hosts allow' directive limiting access 
+only to the currently configured session manager when sending requests. 
+Keep in mind if you decide to enable this only the clients added to this
+ whitelist would be able to access the mapped WebDAV fileshare. Here is 
+an example configuration for the 
+'/opt/ulteo/usr/share/ulteo/ovd/slaveserver.conf':<pre>NameVirtualHost *:1113
+Listen 1113
+&lt;VirtualHost *:1113&gt;
+        DAVMinTimeout 600
+        DAVDepthInfinity On
+
+        Alias /ovd/fs /var/lib/ulteo/ovd/slaveserver/fs
+        &lt;Directory /var/lib/ulteo/ovd/slaveserver/fs&gt;
+                DAV on
+                AuthNAme "WebDAV Storage"
+                AuthType Basic
+                AuthUserFile /var/spool/ulteo/ovd/fs.dav.passwd
+                Require valid-user
+                AllowOverride AuthConfig Limit
+          
+                Order allow,deny
+                allow from 192.168.1.0/24
+                allow from 10.0.1.0/24
+                deny from all
+        &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</pre>This whitelisting feature might be beneficial 
+to include within the administrative interface so a feature request will
+ be filed with the Ulteo-OVD maintainers.</li>
+</ol>
+<h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=52" title="Edit section: cups Service">edit</a>]</span> <span class="mw-headline" id="cups_Service"> cups Service </span></h3>
+<ol>
+ <li><i>Use of ACL's</i> -The cups printing service may also be hardened
+ with the use of access control lists. Much like ACL's in the Apache 
+webservice limiting access to the cups service by allowed remote clients
+ will aid in preventing unauthorized use. Below is an example 
+configuration:<pre># Restrict access to the server...
+&lt;Location /&gt;
+  Order allow,deny
+  allow from 191.168.1.10 #Individual machine allowed access to the cups printing service
+  allow from 192.168.2.0/24 #Entire subnet of allowed machines to the cups printing service
+  deny from all
+&lt;/Location&gt;</pre>
+As with many of the other services the Ulteo-OVD service implements the 
+administration of these whitelists would prove beneficial if available 
+through the current administrative interface.</li>
+</ol>
+<h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=53" title="Edit section: Windows Application Server">edit</a>]</span> <span class="mw-headline" id="Windows_Application_Server"> Windows Application Server </span></h2>
+<p>The Windows Ulteo-OVD application server can also be further 
+restricted, below are some available options for hardning the 
+application server service on Windows (This guide was developed using 
+Windows Server 2003).
+</p>
+<ol>
+ <li><i>Terminal services</i> - Terminal services should the following options enabled. You can modify these settings using the <i>Administrative Tools -&gt; Terminal Services Configuration</i> MMC snap-in.
+  <ol>
+   <li><i>Delete temporary folders on exit</i> = Yes</li>
+   <li><i>Use temporary folders per session</i> = Yes</li>
+   <li><i>Active Desktop</i> = Disable</li>
+   <li><i>Permission Compatibility</i> = Full Security</li>
+   <li><i>Restrict each user to one session</i> = Yes</li>
+  </ol>
+ </li>
+ <li><i>Windows firewall</i> - Limiting access to the services required 
+by the Ulteo-OVD application server to a whitelist of allowed machines 
+will help prevent unauthorized access. Configuration can modified using <i>Control Panel -&gt; Windows Firewall</i>. Below are the recommended settings:
+  <ol>
+   <li><i>OVDWin[arch]Service.exe</i> - Edit the scope for this service 
+to either use a custom list of allowed machines or restrict to the 
+current subnet of the server</li>
+ 
+ <li><i>ulteo-ovd-slaveservice</i> - You can also edit the scope for 
+this server to use a custom list of allowed machines or restrict to the 
+current subnet of the server</li>
+ <li><i>Remote Desktop</i> - This windows server can also be filtered by
+ restricting access to a whitelist of allowed machines or the current 
+subnet of the server.</li>
+</ol></li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 462/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikidb:pcache:idhash:195-0!*!0!!en!* and timestamp 20120830164751 -->
+<div class="printfooter">
+Retrieved from "<a href="http://tyr.scl.utah.edu/index.php/Clustered_Application_Server_-_Ulteo">http://tyr.scl.utah.edu/index.php/Clustered_Application_Server_-_Ulteo</a>"</div>
+		<div id="catlinks" class="catlinks catlinks-allhidden"></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="http://tyr.scl.utah.edu/index.php/Clustered_Application_Server_-_Ulteo" title="View the content page [alt-c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://tyr.scl.utah.edu/index.php?title=Talk:Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;redlink=1" title="Discussion about the content page [alt-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-edit"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit" title="You can edit this page. Please use the preview button before saving [alt-e]" accesskey="e">Edit</a></li>
+				 <li id="ca-history"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=history" title="Past revisions of this page [alt-h]" accesskey="h">History</a></li>
+				 <li id="ca-delete"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=delete" title="Delete this page [alt-d]" accesskey="d">Delete</a></li>
+				 <li id="ca-move"><a href="http://tyr.scl.utah.edu/index.php/Special:MovePage/Clustered_Application_Server_-_Ulteo" title="Move this page [alt-m]" accesskey="m">Move</a></li>
+				 <li id="ca-protect"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=protect" title="Protect this page [alt-=]" accesskey="=">Protect</a></li>
+				 <li id="ca-watch"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=watch" title="Add this page to your watchlist [alt-w]" accesskey="w">Watch</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-userpage"><a href="http://tyr.scl.utah.edu/index.php/User:Jason" title="Your user page [alt-.]" accesskey=".">Jason</a></li>
+				<li id="pt-mytalk"><a href="http://tyr.scl.utah.edu/index.php/User_talk:Jason" title="Your talk page [alt-n]" accesskey="n" class="new">My talk</a></li>
+				<li id="pt-preferences"><a href="http://tyr.scl.utah.edu/index.php/Special:Preferences" title="Your preferences">My preferences</a></li>
+				<li id="pt-watchlist"><a href="http://tyr.scl.utah.edu/index.php/Special:Watchlist" title="The list of pages you are monitoring for changes [alt-l]" accesskey="l">My watchlist</a></li>
+				<li id="pt-mycontris"><a href="http://tyr.scl.utah.edu/index.php/Special:Contributions/Jason" title="List of your contributions [alt-y]" accesskey="y">My contributions</a></li>
+				<li id="pt-logout"><a href="http://tyr.scl.utah.edu/index.php?title=Special:UserLogout&amp;returnto=Clustered_Application_Server_-_Ulteo" title="Log out">Log out</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(/skins/common/images/wiki.png);" href="http://tyr.scl.utah.edu/index.php/Main_Page" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://tyr.scl.utah.edu/index.php/Main_Page" title="Visit the main page [alt-z]" accesskey="z">Main page</a></li>
+				<li id="n-portal"><a href="http://tyr.scl.utah.edu/index.php/LabRats:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-currentevents"><a href="http://tyr.scl.utah.edu/index.php/LabRats:Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-recentchanges"><a href="http://tyr.scl.utah.edu/index.php/Special:RecentChanges" title="The list of recent changes in the wiki [alt-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="http://tyr.scl.utah.edu/index.php/Special:Random" title="Load a random page [alt-x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="http://tyr.scl.utah.edu/index.php/Help:Contents" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/index.php" id="searchform">
+				<input name="title" value="Special:Search" type="hidden">
+				<input id="searchInput" title="Search LabRats" accesskey="f" name="search" type="search">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" type="submit">
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://tyr.scl.utah.edu/index.php/Special:WhatLinksHere/Clustered_Application_Server_-_Ulteo" title="List of all wiki pages that link here [alt-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://tyr.scl.utah.edu/index.php/Special:RecentChangesLinked/Clustered_Application_Server_-_Ulteo" title="Recent changes in pages linked from this page [alt-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://tyr.scl.utah.edu/index.php/Special:Upload" title="Upload files [alt-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://tyr.scl.utah.edu/index.php/Special:SpecialPages" title="List of all special pages [alt-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;oldid=2020" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="Ulteo-OVD-Guide_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 30 August 2012, at 16:47.</li>
+		<li id="viewcount">This page has been accessed 206 times.</li>
+		<li id="privacy"><a href="http://tyr.scl.utah.edu/index.php/LabRats:Privacy_policy" title="LabRats:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="http://tyr.scl.utah.edu/index.php/LabRats:About" title="LabRats:About">About LabRats</a></li>
+		<li id="disclaimer"><a href="http://tyr.scl.utah.edu/index.php/LabRats:General_disclaimer" title="LabRats:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="Ulteo-OVD-Guide_files/load.php"></script><script src="Ulteo-OVD-Guide_files/load_002.php"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Clustered_Application_Server_-_Ulteo", "wgTitle": "Clustered Application Server - Ulteo", "wgAction": "view", "wgArticleId": 195, "wgIsArticle": true, "wgUserName": "Jason", "wgUserGroups": ["bureaucrat", "restrict", "sysop", "*", "user", "autoconfirmed"], "wgCurRevisionId": 2020, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax", "mediawiki.legacy.ajaxwatch"]);
+	mediaWiki.loader.go();
+}
+</script><script type="text/javascript" src="Ulteo-OVD-Guide_files/load_003.php"></script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":"0","enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":"0","showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0
+	,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"ajaxsearch":"","editwidth":"0","nickname":"","timecorrection":""});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.194 secs. --></body></html>
