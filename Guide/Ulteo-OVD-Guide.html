@@ -143,6 +143,7 @@
 <li class="toclevel-2 tocsection-53"><a href="#Windows_Application_Server"><span class="tocnumber">6.3</span> <span class="toctext">Windows Application Server</span></a></li>
 </ul>
 </li>
+<li class="toclevel-1 tocsection-54"><a href="#Session_XML_example"><span class="tocnumber">7</span> <span class="toctext">Session XML example</span></a></li>
 </ul>
 </td></tr></tbody></table>
 <h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=1" title="Edit section: Ulteo Remote Application Server">edit</a>]</span> <span class="mw-headline" id="Ulteo_Remote_Application_Server"> Ulteo Remote Application Server </span></h1>
@@ -682,7 +683,10 @@ the APC workaround like so:<pre>suhosin.apc_bug_workaround = on</pre></li>
  <li><i>Transparent encryption options</i> - Additionally transparent 
 encryption of PHP server side session's &amp; the client side cookie is 
 recommended. Below are examples:<pre>suhosin.session.encrypt = on
-suhosin.cookie.encrypt = on</pre></li>
+suhosin.cookie.encrypt = on</pre>Initial testing on enabling this 
+feature has returned errors with the current WebDAV filesystem 
+implementation. A feature request will be issued to the current 
+developers.</li>
 </ol>
 <h2><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=49" title="Edit section: Linux Application Server">edit</a>]</span> <span class="mw-headline" id="Linux_Application_Server"> Linux Application Server </span></h2>
 <p>The linux application server provides several services which you may additionally configure using the recommendations below.
@@ -706,7 +710,7 @@ should be set such as 'user' as in this example:<pre>security = user</pre>This
  configuration does result the client no longer being able to save files
  directly to their own machine. A feature request will be sent to the 
 current Ulteo-OVD maintainers regarding this.</li>
-  <li><i>Interface security</i> - Force bind mode to only allowed interfaces as well as force socket connection mode. Example:<pre>interfaces = eth0, lo
+  <li><i>Interface security</i> - Force bind mode to only allowed interfaces as well as force socket connection mode. Example:<pre>interfaces = eth0
 bind interfaces only = yes
 socket options = TCP_NODELAY</pre></li>
  </ol>
@@ -745,6 +749,18 @@ Listen 1113
 &lt;/VirtualHost&gt;</pre>This whitelisting feature might be beneficial 
 to include within the administrative interface so a feature request will
  be filed with the Ulteo-OVD maintainers.</li>
+ <li><i>SSL/TLS</i> - Additionally the use of SSL/TLS protocols should 
+be enabled to prevent unauthorized monitoring of communications between 
+the session manager &amp; application servers. Not enabling this 
+functionality could lead to a man in the middle scenario allowing 
+impersonations or unauthorized requests made to the application server 
+forcing session destroy, or other commands. Adding a signed SSL/TLS 
+certificate to the vhost configuration will enable this functionality.<pre>SSLEngine on
+SSLCertificateFile /path/to/valid/signed/certificate.cer
+SSLCertificateKeyFile /path/to/valid/private/key/used/for/certificate/generation.key</pre>
+And here is how to create the certificate request from a certificate authority:<pre>%&gt; openssl genrsa -des3 -out server.key 1024
+%&gt; openssl req -new -key server.key -out server.csr
+</pre>Then send the server.csr to the certificate authority for signing.</li>
 </ol>
 <h3><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=52" title="Edit section: cups Service">edit</a>]</span> <span class="mw-headline" id="cups_Service"> cups Service </span></h3>
 <ol>
@@ -786,24 +802,275 @@ will help prevent unauthorized access. Configuration can modified using <i>Contr
    <li><i>OVDWin[arch]Service.exe</i> - Edit the scope for this service 
 to either use a custom list of allowed machines or restrict to the 
 current subnet of the server</li>
- 
+  </ol>
+ </li>
  <li><i>ulteo-ovd-slaveservice</i> - You can also edit the scope for 
 this server to use a custom list of allowed machines or restrict to the 
 current subnet of the server</li>
  <li><i>Remote Desktop</i> - This windows server can also be filtered by
  restricting access to a whitelist of allowed machines or the current 
 subnet of the server.</li>
-</ol></li></ol>
+</ol>
+<h1><span class="editsection">[<a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;action=edit&amp;section=54" title="Edit section: Session XML example">edit</a>]</span> <span class="mw-headline" id="Session_XML_example"> Session XML example </span></h1>
+<p>Once an authenticated session is initialized the following XML 
+example is returned to the client so that the Java applet can initialize
+ connections over RDP to the allowed list of applications and their 
+corresponding server.
+</p>
+<pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;session id="1346426160ZGL5k" mode="applications" duration="86400"&gt;
+  &lt;settings&gt;
+    &lt;setting name="user_login" value="[USERNAME]"/&gt;
+    &lt;setting name="user_displayname" value="[USERNAME]"/&gt;
+    &lt;setting name="locale" value="en_GB"/&gt;
+    &lt;setting name="timeout" value="86400"/&gt;
+    &lt;setting name="multimedia" value="1"/&gt;
+    &lt;setting name="redirect_client_drives" value="full"/&gt;
+    &lt;setting name="redirect_client_printers" value="1"/&gt;
+    &lt;setting name="rdp_bpp" value="16"/&gt;
+    &lt;setting name="enhance_user_experience" value="1"/&gt;
+    &lt;setting name="timezone" value="US/Mountain"/&gt;
+    &lt;setting name="persistent" value="1"/&gt;
+    &lt;setting name="desktop_icons" value="1"/&gt;
+    &lt;setting name="aps_access_login" value="u1346426160ZLwq4_APS"/&gt;
+    &lt;setting name="aps_access_password" value="bhr87VBM"/&gt;
+    &lt;setting name="fs_access_login" value="u1346426160RgjDJA_FS"/&gt;
+    &lt;setting name="fs_access_password" value="bdr91ZFE"/&gt;
+  &lt;/settings&gt;
+  &lt;user displayName="[USERNAME]"/&gt;
+  &lt;profile server="155.97.16.165" dir="p_1346425840O3tkA" login="u1346426160RgjDJA_FS" password="bdr91ZFE"/&gt;
+  &lt;server type="linux" fqdn="155.97.16.165" login="u1346426160ZLwq4_APS" password="bhr87VBM"&gt;
+    &lt;application id="106" name="Adobe Reader 9"&gt;
+      &lt;mime type="application/pdf"/&gt;
+      &lt;mime type="application/vnd.adobe.pdx"/&gt;
+      &lt;mime type="application/vnd.adobe.xdp+xml"/&gt;
+      &lt;mime type="application/vnd.adobe.xfdf"/&gt;
+      &lt;mime type="application/vnd.fdf"/&gt;
+    &lt;/application&gt;
+    &lt;application id="108" name="GIMP Image Editor"&gt;
+      &lt;mime type="application/pdf"/&gt;
+      &lt;mime type="application/postscript"/&gt;
+      &lt;mime type="image/bmp"/&gt;
+      &lt;mime type="image/g3fax"/&gt;
+      &lt;mime type="image/gif"/&gt;
+      &lt;mime type="image/jpeg"/&gt;
+      &lt;mime type="image/pcx"/&gt;
+      &lt;mime type="image/png"/&gt;
+      &lt;mime type="image/svg+xml"/&gt;
+      &lt;mime type="image/tiff"/&gt;
+      &lt;mime type="image/x-compressed-xcf"/&gt;
+      &lt;mime type="image/x-fits"/&gt;
+      &lt;mime type="image/x-icon"/&gt;
+      &lt;mime type="image/x-portable-anymap"/&gt;
+      &lt;mime type="image/x-portable-bitmap"/&gt;
+      &lt;mime type="image/x-portable-graymap"/&gt;
+      &lt;mime type="image/x-portable-pixmap"/&gt;
+      &lt;mime type="image/x-psd"/&gt;
+      &lt;mime type="image/x-sgi"/&gt;
+      &lt;mime type="image/x-tga"/&gt;
+      &lt;mime type="image/x-wmf"/&gt;
+      &lt;mime type="image/x-xbitmap"/&gt;
+      &lt;mime type="image/x-xcf"/&gt;
+      &lt;mime type="image/x-xpixmap"/&gt;
+      &lt;mime type="image/x-xwindowdump"/&gt;
+    &lt;/application&gt;
+    &lt;application id="111" name="OpenOffice.org Database"&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.database"/&gt;
+      &lt;mime type="application/vnd.sun.xml.base"/&gt;
+    &lt;/application&gt;
+    &lt;application id="109" name="OpenOffice.org Drawing"&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.graphics"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.graphics-template"/&gt;
+      &lt;mime type="application/vnd.stardivision.draw"/&gt;
+      &lt;mime type="application/vnd.sun.xml.draw"/&gt;
+      &lt;mime type="application/vnd.sun.xml.draw.template"/&gt;
+    &lt;/application&gt;
+    &lt;application id="115" name="OpenOffice.org Formula"&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.formula"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.formula-template"/&gt;
+      &lt;mime type="application/vnd.stardivision.math"/&gt;
+      &lt;mime type="application/vnd.sun.xml.math"/&gt;
+      &lt;mime type="text/mathml"/&gt;
+    &lt;/application&gt;
+    &lt;application id="102" name="OpenOffice.org Presentation"&gt;
+      &lt;mime type="application/mspowerpoint"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.presentation.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.slideshow.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.template.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.presentation"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.presentation-template"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.presentation"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.slideshow"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.template"/&gt;
+      &lt;mime type="application/vnd.stardivision.impress"/&gt;
+      &lt;mime type="application/vnd.sun.xml.impress"/&gt;
+      &lt;mime type="application/vnd.sun.xml.impress.template"/&gt;
+    &lt;/application&gt;
+    &lt;application id="103" name="OpenOffice.org Spreadsheet"&gt;
+      &lt;mime type="application/csv"/&gt;
+      &lt;mime type="application/excel"/&gt;
+      &lt;mime type="application/msexcel"/&gt;
+      &lt;mime type="application/tab-separated-values"/&gt;
+      &lt;mime type="application/vnd.lotus-1-2-3"/&gt;
+      &lt;mime type="application/vnd.ms-excel"/&gt;
+      &lt;mime type="application/vnd.ms-excel.sheet.binary.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-excel.sheet.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-excel.template.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.chart"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.chart-template"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.spreadsheet"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.spreadsheet-template"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.spreadsheetml.template"/&gt;
+      &lt;mime type="application/vnd.stardivision.calc"/&gt;
+      &lt;mime type="application/vnd.stardivision.chart"/&gt;
+      &lt;mime type="application/vnd.sun.xml.calc"/&gt;
+      &lt;mime type="application/vnd.sun.xml.calc.template"/&gt;
+      &lt;mime type="application/x-123"/&gt;
+      &lt;mime type="application/x-dbase"/&gt;
+      &lt;mime type="application/x-dbf"/&gt;
+      &lt;mime type="application/x-dos_ms_excel"/&gt;
+      &lt;mime type="application/x-excel"/&gt;
+      &lt;mime type="application/x-ms-excel"/&gt;
+      &lt;mime type="application/x-msexcel"/&gt;
+      &lt;mime type="application/x-quattropro"/&gt;
+      &lt;mime type="text/comma-separated-values"/&gt;
+      &lt;mime type="text/csv"/&gt;
+      &lt;mime type="text/spreadsheet"/&gt;
+      &lt;mime type="text/tab-separated-values"/&gt;
+      &lt;mime type="text/x-comma-separated-values"/&gt;
+      &lt;mime type="text/x-csv"/&gt;
+    &lt;/application&gt;
+    &lt;application id="101" name="OpenOffice.org Word Processor"&gt;
+      &lt;mime type="application/msword"/&gt;
+      &lt;mime type="application/rtf"/&gt;
+      &lt;mime type="application/vnd.ms-word.document.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-word.template.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-works"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.text"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.text-master"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.text-template"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.wordprocessingml.template"/&gt;
+      &lt;mime type="application/vnd.stardivision.writer"/&gt;
+      &lt;mime type="application/vnd.stardivision.writer-global"/&gt;
+      &lt;mime type="application/vnd.sun.xml.writer"/&gt;
+      &lt;mime type="application/vnd.sun.xml.writer.global"/&gt;
+      &lt;mime type="application/vnd.sun.xml.writer.template"/&gt;
+      &lt;mime type="application/vnd.wordperfect"/&gt;
+      &lt;mime type="application/wordperfect"/&gt;
+      &lt;mime type="application/x-extension-txt"/&gt;
+      &lt;mime type="application/x-t602"/&gt;
+      &lt;mime type="text/plain"/&gt;
+      &lt;mime type="text/rtf"/&gt;
+    &lt;/application&gt;
+  &lt;/server&gt;
+  &lt;server type="windows" fqdn="155.97.16.164" login="u1346426160ZLwq4_APS" password="bhr87VBM"&gt;
+    &lt;application id="60" name="Adobe After Effects CS5"/&gt;
+    &lt;application id="37" name="Adobe Bridge CS5"/&gt;
+    &lt;application id="93" name="Adobe Contribute CS5"/&gt;
+    &lt;application id="63" name="Adobe Dreamweaver CS5"&gt;
+      &lt;mime type="application/xml"/&gt;
+      &lt;mime type="text/css"/&gt;
+      &lt;mime type="text/html"/&gt;
+      &lt;mime type="text/plain"/&gt;
+      &lt;mime type="text/xml"/&gt;
+    &lt;/application&gt;
+    &lt;application id="52" name="Adobe Encore CS5"/&gt;
+    &lt;application id="43" name="Adobe ExtendScript Toolkit CS5"/&gt;
+    &lt;application id="65" name="Adobe Extension Manager CS5"/&gt;
+    &lt;application id="68" name="Adobe Fireworks CS5"&gt;
+      &lt;mime type="image/png"/&gt;
+      &lt;mime type="image/x-png"/&gt;
+    &lt;/application&gt;
+    &lt;application id="79" name="Adobe Flash Builder 4"/&gt;
+    &lt;application id="56" name="Adobe Flash Catalyst CS5"/&gt;
+    &lt;application id="45" name="Adobe Flash Professional CS5"/&gt;
+    &lt;application id="58" name="Adobe Illustrator CS5"&gt;
+      &lt;mime type="application/msword"/&gt;
+      &lt;mime type="application/postscript"/&gt;
+      &lt;mime type="application/vnd.ms-word.document.12"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/&gt;
+      &lt;mime type="application/xml"/&gt;
+      &lt;mime type="image/bmp"/&gt;
+      &lt;mime type="image/gif"/&gt;
+      &lt;mime type="image/jpeg"/&gt;
+      &lt;mime type="image/pjpeg"/&gt;
+      &lt;mime type="image/png"/&gt;
+      &lt;mime type="image/tiff"/&gt;
+      &lt;mime type="image/x-png"/&gt;
+      &lt;mime type="text/plain"/&gt;
+      &lt;mime type="text/xml"/&gt;
+    &lt;/application&gt;
+    &lt;application id="50" name="Adobe InDesign CS5"/&gt;
+    &lt;application id="92" name="Adobe Media Encoder CS5"/&gt;
+    &lt;application id="76" name="Adobe OnLocation CS5"/&gt;
+    &lt;application id="96" name="Adobe Photoshop CS5"/&gt;
+    &lt;application id="80" name="Adobe Pixel Bender Toolkit 2"/&gt;
+    &lt;application id="47" name="Amos 20 Commuter License"/&gt;
+    &lt;application id="69" name="Amos Graphics"/&gt;
+    &lt;application id="81" name="IBM SPSS Statistics 20"/&gt;
+    &lt;application id="84" name="IBM SPSS Statistics 20 Commuter License"/&gt;
+    &lt;application id="73" name="Language"/&gt;
+    &lt;application id="49" name="Microsoft OneNote 2010"&gt;
+      &lt;mime type="application/msonenote"/&gt;
+    &lt;/application&gt;
+    &lt;application id="77" name="Microsoft PowerPoint 2010"&gt;
+      &lt;mime type="application/vnd.ms-officetheme"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.addin.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.presentation.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.slide.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.slideshow.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-powerpoint.template.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.presentation"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.presentation"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.slide"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.slideshow"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.presentationml.template"/&gt;
+      &lt;mime type="application/x-mspowerpoint"/&gt;
+      &lt;mime type="application/x-mspowerpoint.12"/&gt;
+      &lt;mime type="application/x-mspowerpoint.macroEnabled.12"/&gt;
+    &lt;/application&gt;
+    &lt;application id="75" name="Microsoft Publisher 2010"&gt;
+      &lt;mime type="application/vnd.ms-publisher"/&gt;
+    &lt;/application&gt;
+    &lt;application id="38" name="Microsoft SharePoint Workspace 2010"/&gt;
+    &lt;application id="54" name="Microsoft Word 2010"&gt;
+      &lt;mime type="application/msword"/&gt;
+      &lt;mime type="application/vnd.ms-word.document.12"/&gt;
+      &lt;mime type="application/vnd.ms-word.document.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.ms-word.template.12"/&gt;
+      &lt;mime type="application/vnd.ms-word.template.macroEnabled.12"/&gt;
+      &lt;mime type="application/vnd.oasis.opendocument.text"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/&gt;
+      &lt;mime type="application/vnd.openxmlformats-officedocument.wordprocessingml.template"/&gt;
+      &lt;mime type="application/xml"/&gt;
+      &lt;mime type="text/html"/&gt;
+      &lt;mime type="text/xml"/&gt;
+    &lt;/application&gt;
+    &lt;application id="85" name="Program Editor"/&gt;
+    &lt;application id="86" name="Seed Manager"/&gt;
+    &lt;application id="66" name="Text Output"/&gt;
+    &lt;application id="91" name="User-Defined Estimands"/&gt;
+    &lt;application id="87" name="View Data"/&gt;
+  &lt;/server&gt;
+  &lt;server type="windows" fqdn="155.97.16.163" login="u1346426160ZLwq4_APS" password="bhr87VBM"&gt;
+    &lt;application id="29" name="Gleim CPA Test Prep 2012 Network Edition"/&gt;
+  &lt;/server&gt;
+&lt;/session&gt;</pre>
 
 <!-- 
 NewPP limit report
-Preprocessor node count: 462/1000000
+Preprocessor node count: 487/1000000
 Post-expand include size: 0/2097152 bytes
 Template argument size: 0/2097152 bytes
 Expensive parser function count: 0/100
 -->
 
-<!-- Saved in parser cache with key wikidb:pcache:idhash:195-0!*!0!!en!* and timestamp 20120830164751 -->
+<!-- Saved in parser cache with key wikidb:pcache:idhash:195-0!*!0!!en!* and timestamp 20120831141935 -->
 <div class="printfooter">
 Retrieved from "<a href="http://tyr.scl.utah.edu/index.php/Clustered_Application_Server_-_Ulteo">http://tyr.scl.utah.edu/index.php/Clustered_Application_Server_-_Ulteo</a>"</div>
 		<div id="catlinks" class="catlinks catlinks-allhidden"></div>		<!-- end content -->
@@ -875,7 +1142,7 @@ Retrieved from "<a href="http://tyr.scl.utah.edu/index.php/Clustered_Application
 				<li id="t-recentchangeslinked"><a href="http://tyr.scl.utah.edu/index.php/Special:RecentChangesLinked/Clustered_Application_Server_-_Ulteo" title="Recent changes in pages linked from this page [alt-k]" accesskey="k">Related changes</a></li>
 <li id="t-upload"><a href="http://tyr.scl.utah.edu/index.php/Special:Upload" title="Upload files [alt-u]" accesskey="u">Upload file</a></li>
 <li id="t-specialpages"><a href="http://tyr.scl.utah.edu/index.php/Special:SpecialPages" title="List of all special pages [alt-q]" accesskey="q">Special pages</a></li>
-				<li id="t-print"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;oldid=2020" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+				<li id="t-print"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://tyr.scl.utah.edu/index.php?title=Clustered_Application_Server_-_Ulteo&amp;oldid=2029" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
 		</div>
 	</div>
 </div><!-- end of the left (by default at least) column -->
@@ -885,8 +1152,8 @@ Retrieved from "<a href="http://tyr.scl.utah.edu/index.php/Clustered_Application
 		<a href="http://www.mediawiki.org/"><img src="Ulteo-OVD-Guide_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" height="31" width="88"></a>
 	</div>
 	<ul id="f-list">
-		<li id="lastmod"> This page was last modified on 30 August 2012, at 16:47.</li>
-		<li id="viewcount">This page has been accessed 206 times.</li>
+		<li id="lastmod"> This page was last modified on 31 August 2012, at 14:19.</li>
+		<li id="viewcount">This page has been accessed 218 times.</li>
 		<li id="privacy"><a href="http://tyr.scl.utah.edu/index.php/LabRats:Privacy_policy" title="LabRats:Privacy policy">Privacy policy</a></li>
 		<li id="about"><a href="http://tyr.scl.utah.edu/index.php/LabRats:About" title="LabRats:About">About LabRats</a></li>
 		<li id="disclaimer"><a href="http://tyr.scl.utah.edu/index.php/LabRats:General_disclaimer" title="LabRats:General disclaimer">Disclaimers</a></li>
@@ -896,7 +1163,7 @@ Retrieved from "<a href="http://tyr.scl.utah.edu/index.php/Clustered_Application
 
 <script src="Ulteo-OVD-Guide_files/load.php"></script><script src="Ulteo-OVD-Guide_files/load_002.php"></script>
 <script>if ( window.mediaWiki ) {
-	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Clustered_Application_Server_-_Ulteo", "wgTitle": "Clustered Application Server - Ulteo", "wgAction": "view", "wgArticleId": 195, "wgIsArticle": true, "wgUserName": "Jason", "wgUserGroups": ["bureaucrat", "restrict", "sysop", "*", "user", "autoconfirmed"], "wgCurRevisionId": 2020, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Clustered_Application_Server_-_Ulteo", "wgTitle": "Clustered Application Server - Ulteo", "wgAction": "view", "wgArticleId": 195, "wgIsArticle": true, "wgUserName": "Jason", "wgUserGroups": ["bureaucrat", "restrict", "sysop", "*", "user", "autoconfirmed"], "wgCurRevisionId": 2029, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
 }
 </script>
 <script>if ( window.mediaWiki ) {
